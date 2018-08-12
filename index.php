@@ -20,6 +20,36 @@ $notes = file('data/phones.txt');
     <title>ИП Залупкин ©. Телефонная книга ®</title>
 </head>
 <body>
+<h1>Найти</h1>
+    <form action="" method="post" class="search">
+    <input type="search" name="" placeholder="поиск" class="input" />
+    <input type="submit" name="name" value="Найти" class="submit" />
+    </form>
+<table>
+    <thead>
+    <th>Имя</th>
+    <th>Телефон</th>
+    </thead>
+    <tbody>
+	<? if ($_POST['name'] = false ): ?>
+        <tr>
+            <td colspan="2">Введите имя</td>
+        </tr>
+	<? else: ?>
+		<?
+        foreach ($notes as $note) {
+			list($name, $phone) = explode(';', $note);
+			if ($name == $_POST['name']) { ?>
+		<tr>
+            <td><?= $name ?></td>
+            <td><?= $phone ?></td>
+    </tr>  <?
+            }
+			 } ?>
+
+	<? endif; ?>
+    </tbody>
+</table>
 <h1>Список телефонов</h1>
 <table>
     <thead>
@@ -50,5 +80,3 @@ $notes = file('data/phones.txt');
     Телефон: <input type="text" name="phone">
     <input type="submit" value="Создать">
 </form>
-</body>
-</html>
